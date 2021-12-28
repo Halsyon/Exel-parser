@@ -19,6 +19,12 @@
   </properties>
 
   <dependencies>
+
+    <dependency>
+      <groupId>io.github.millij</groupId>
+      <artifactId>poi-object-mapper</artifactId>
+      <version>1.0.0</version>
+    </dependency>
     <dependency> <!--convert Java object to / from JSON -->
       <groupId>org.codehaus.jackson</groupId>
       <artifactId>jackson-mapper-asl</artifactId>
