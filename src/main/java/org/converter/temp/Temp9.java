@@ -22,16 +22,16 @@ public class Temp9 {
         Map<Integer, Depo> depoMap = new HashMap();
         Map<Integer, String> stringMap = new HashMap<>();
         stringMap.put(1, "id");
-        stringMap.put(2, "date");
-        stringMap.put(3, "time");
-        stringMap.put(4, "type");
-        stringMap.put(5, "sender_id");
-        stringMap.put(6, "sender name");
-        stringMap.put(7, "recipient_id");
-        stringMap.put(8, "recipient name");
-        stringMap.put(9, "amount");
-        stringMap.put(10, "fee");
-        stringMap.put(11, "currency_label");
+        stringMap.put(2, "date_time");
+//        stringMap.put(3, "time");
+        stringMap.put(3, "type");
+        stringMap.put(4, "sender_id");
+        stringMap.put(5, "sender name");
+        stringMap.put(6, "recipient_id");
+        stringMap.put(7, "recipient name");
+        stringMap.put(8, "amount");
+        stringMap.put(9, "fee");
+        stringMap.put(10, "currency_label");
         File file = new File("F:\\ConvertExel\\exampleTZ.json");
 //        File file =  new File("F:\\ConvertExel\\tempJson.json");
 
@@ -106,7 +106,7 @@ public class Temp9 {
         int colNum1 = 0;
         System.out.println("Creating excel");
         Row row1 = sheet.createRow(rowNum++); // строка
-        for (int i = 1; i < stringMap.size(); i++) {
+        for (int i = 1; i < stringMap.size() + 1; i++) {
 
             Cell cell = row1.createCell(i-1); // ячейка
             cell.setCellValue((String) stringMap.get(i));
@@ -120,9 +120,9 @@ public class Temp9 {
                 Cell cell = row.createCell(colNum++); // ячейка
                 cell.setCellValue((Integer) datatype.getId());
                 Cell cell1 = row.createCell(colNum++); // ячейка
-                cell1.setCellValue((String) datatype.getDate());
-                Cell cell2 = row.createCell(colNum++); // ячейка
-                cell2.setCellValue((String) datatype.getTime());
+                cell1.setCellValue((String) datatype.getDate() + " " + datatype.getTime());
+//                Cell cell2 = row.createCell(colNum++); // ячейка
+//                cell2.setCellValue((String) datatype.getTime());
             Cell cellT = row.createCell(colNum++); // ячейка
             cellT.setCellValue((String) datatype.getTime());
                 Cell cell3 = row.createCell(colNum++); // ячейка
@@ -139,8 +139,8 @@ public class Temp9 {
                 cell8.setCellValue((Double) datatype.getFee());
                 Cell cell9 = row.createCell(colNum++); // ячейка
                 cell9.setCellValue((String) datatype.getCurrency().getLabel());
-            Cell cell10 = row.createCell(colNum++); // ячейка
-            cell10.setCellValue((String) datatype.getCurrency().getLabel());
+//            Cell cell10 = row.createCell(colNum++); // ячейка
+//            cell10.setCellValue((String) datatype.getCurrency().getLabel());
 //            }
 
         }
