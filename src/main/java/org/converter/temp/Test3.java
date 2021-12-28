@@ -11,7 +11,6 @@ public class Test3 {
     public static void main(String[] args) {
         Sender sender = new Sender();
         sender.setName("Albert");
-        sender.setFee(14.47);
         sender.setId(60);
         Recipient recipient = new Recipient();
         recipient.setName("Vasiliy");
@@ -19,7 +18,7 @@ public class Test3 {
         Currency currency = new Currency();
         currency.setId(1);
         currency.setLabel("USD");
-        Depo depo = Depo.of("2016-12-22", 88.25, 1, "11:09:34", "DEPOSIT");
+        Depo depo = Depo.of("2016-12-22", 88.25, 1, "11:09:34", "DEPOSIT", 14.47);
         depo.setSender(sender);
         depo.setRecipient(recipient);
         depo.setCurrency(currency);

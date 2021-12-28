@@ -10,7 +10,7 @@ public class Depo {
     private int id;
     private String time;
     private String type;
-
+    private double fee;
     private Sender sender;
     private Recipient recipient;
     private Currency currency;
@@ -18,13 +18,14 @@ public class Depo {
     public Depo() {
     }
 
-    public static Depo of(String date, double amount, int id, String time, String type) {
+    public static Depo of(String date, double amount, int id, String time, String type, double fee) {
         Depo depo = new Depo();
         depo.date = date;
         depo.amount = amount;
         depo.id = id;
         depo.time = time;
         depo.type = type;
+        depo.fee = fee;
         return depo;
     }
 
@@ -92,6 +93,14 @@ public class Depo {
         this.currency = currency;
     }
 
+    public double getFee() {
+        return fee;
+    }
+
+    public void setFee(double fee) {
+        this.fee = fee;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -111,7 +120,7 @@ public class Depo {
 
     @Override
     public String toString() {
-        return String.format("Depo: id=%s, amount=%s, data=%s, time=%s, type=%s, Sender=%s, Recipient=%s, Currency=%s",
-                id, amount, date, time, type, sender, recipient, currency);
+        return String.format("Depo: id=%s, amount=%s, data=%s, time=%s, type=%s, fee=%s, Sender=%s, Recipient=%s, Currency=%s",
+                id, amount, date, time, type, fee, sender, recipient, currency);
     }
 }

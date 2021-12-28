@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Sender {
     private String name;
     private int id;
-    private double fee;
+
 
     public Sender() {
     }
@@ -26,13 +26,7 @@ public class Sender {
         this.id = id;
     }
 
-    public double getFee() {
-        return fee;
-    }
 
-    public void setFee(double fee) {
-        this.fee = fee;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -54,7 +48,7 @@ public class Sender {
 
     @Override
     public String toString() {
-        return String.format("Sender: id=%s, name=%s, fee=%s",
-                id, name, fee);
+        return String.format("Sender: id=%s, name=%s",
+                id, name);
     }
 }

@@ -17,8 +17,8 @@ import org.json.simple.parser.ParseException;
  */
 public class Test2 {
     public static void main(String[] args) throws FileNotFoundException {
-//        File file =  new File("F:\\ConvertExel\\exampleTZ.json");
-        File file =  new File("F:\\ConvertExel\\tempJson.json");
+        File file =  new File("F:\\ConvertExel\\exampleTZ.json");
+//        File file =  new File("F:\\ConvertExel\\tempJson.json");
 
 String string = null;
         try (FileReader reader = new FileReader(file)) {
@@ -40,9 +40,13 @@ var arrH = arrJ[1].split("\\]");
 //JSON from String to Object
             Depo depo1 = mapper.readValue(arrH[0], Depo.class);
             System.out.println(depo1);
+            System.out.println();
+            System.out.println();
 
             var arrT = toJSONString.split(",");
             System.out.println(jsonObject);
+            System.out.println();
+
             System.out.println(toJSONString);
             Arrays.stream(arrT).forEach(System.out::println);
         } catch (IOException e) {
