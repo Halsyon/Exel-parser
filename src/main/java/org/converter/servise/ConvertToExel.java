@@ -1,11 +1,13 @@
 package org.converter.servise;
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.xssf.usermodel.*;
 import org.converter.model.Depo;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -40,15 +42,37 @@ public class ConvertToExel {
         this.stringMap.put(9, "fee");
         this.stringMap.put(10, "currency_label");
     }
-
-    public void convertToEl(Map<Integer, Depo> map) {
+//public void convertToEl(Map<Integer, Depo> map) {
+    public void convertToEl() {
         XSSFWorkbook workbook = new XSSFWorkbook(); // создание книги
         XSSFSheet sheet = workbook.createSheet("Datatypes in Java"); // создание страницы
+
 
         int rowNum = 0; //строка
         int colNum1 = 0;
         System.out.println("Creating excel");
         Row row1 = sheet.createRow(rowNum++); // строка
+        CellStyle style=null;
+
+        XSSFFont defaultFont= workbook.createFont();
+        defaultFont.setFontHeightInPoints((short)10);
+        defaultFont.setFontName("Arial");
+        defaultFont.setColor(IndexedColors.BLACK.getIndex());
+        defaultFont.setBold(false);
+        defaultFont.setItalic(false);
+
+        XSSFFont font= workbook.createFont();
+        font.setFontHeightInPoints((short)10);
+        font.setFontName("Arial");
+        font.setColor(IndexedColors.WHITE.getIndex());
+        font.setBold(true);
+        font.setItalic(false);
+
+        style=row1.getRowStyle();
+//        style.setFillBackgroundColor(IndexedColors.DARK_BLUE.getIndex());
+//        style.setFillPattern(CellStyle.class. .SOLID_FOREGROUND);
+//        style.setAlignment(CellStyle.ALIGN_CENTER);
+//        style.setFont(font);
         for (int i = 1; i < stringMap.size() + 1; i++) {
             Cell cell = row1.createCell(i - 1); // ячейка
             cell.setCellValue((String) stringMap.get(i));
@@ -110,5 +134,14 @@ public class ConvertToExel {
         rsl = t[2] + "-" + t[1] + "-" + y + " " + two;
         System.out.println("timeRevers() -> :" + rsl);
         return rsl;
+    }
+
+    public static void main(String[] args) {
+        String string = "F:/ConvertExel/";
+        File file = new File("F:\\ConvertExel\\exampleTZ.json");
+        ConvertJson convertJson = new ConvertJson();
+        convertJson.convertJs(file);
+        ConvertToExel convertToExel = new ConvertToExel(convertJson.getDepoMap(), string);
+        convertToExel.convertToEl();
     }
 }
