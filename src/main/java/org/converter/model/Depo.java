@@ -7,25 +7,24 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Objects;
 
-@Sheet
 public class Depo {
-    @SheetColumn("date")
+
     private String date;
-    @SheetColumn("amount")
+
     private double amount;
-    @SheetColumn("id")
+
     private int id;
-    @SheetColumn("time")
+
     private String time;
-    @SheetColumn("type")
+
     private String type;
-    @SheetColumn("Fee")
+
     private double fee;
-    @SheetColumn("sender")
+
     private Sender sender;
-    @SheetColumn("recipient")
+
     private Recipient recipient;
-    @SheetColumn("currency")
+
     private Currency currency;
 
     public Depo() {

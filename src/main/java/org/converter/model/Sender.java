@@ -1,14 +1,11 @@
 package org.converter.model;
 
-import io.github.millij.poi.ss.model.annotations.Sheet;
-import io.github.millij.poi.ss.model.annotations.SheetColumn;
-
 import java.util.Objects;
-@Sheet
+
 public class Sender {
-    @SheetColumn("Sender_name")
+
     private String name;
-    @SheetColumn("Sender_id")
+
     private int id;
 
 

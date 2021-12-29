@@ -1,14 +1,11 @@
 package org.converter.model;
 
-import io.github.millij.poi.ss.model.annotations.Sheet;
-import io.github.millij.poi.ss.model.annotations.SheetColumn;
-
 import java.util.Objects;
-@Sheet
+
 public class Currency {
-    @SheetColumn("Current_id")
+
     private int id;
-    @SheetColumn("Current_label")
+
     private String label;
 
     public Currency() {

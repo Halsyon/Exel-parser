@@ -10,9 +10,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.time.LocalDateTime;
+
 import java.util.*;
 
+/**
+ * Класс конвертирует JSON файл в локальное хранилище объектов POJO
+ */
 public class ConvertJson {
 
     private Map<Integer, Depo> depoMap = new HashMap();
@@ -26,11 +29,9 @@ public class ConvertJson {
     }
 
     public void convertJs(File filePath) {
-
         File file = filePath;
         String string = null;
         try (FileReader reader = new FileReader(file)) {
-            // read the json file
             JSONParser jsonParser = new JSONParser();
             JSONArray jsonObject = null;
             try {
@@ -42,14 +43,10 @@ public class ConvertJson {
             }
             var toJSONString = jsonObject.toJSONString();
             var arrJ = toJSONString.split("\\[");
-            Arrays.stream(arrJ).forEach(System.out::println);
-            System.out.println(arrJ.length);
+
             var arrH = arrJ[1].split("\\]");
-            System.out.println(arrH[0]);
 
             String[] arrG = arrH[0].split("},\\{");
-            System.out.println(arrG.length + " -> Length");
-            Arrays.stream(arrG).forEach(System.out::println);
 
             ObjectMapper mapper = new ObjectMapper();
 
@@ -58,26 +55,21 @@ public class ConvertJson {
             for (int i = 0; i < arrG.length; i++) {
                 if (i == 0) {
                     string1 = arrG[i] + "}";
-                    System.out.println(string1 + " при нуле");
-
                 }
                 if (i == arrG.length - 1) {
                     string1 = "{" + arrG[i];
-                    System.out.println(string1 + " в конце");
                 }
                 if (i != 0 && i != arrG.length - 1) {
                     string1 = "{" + arrG[i] + "}";
-                    System.out.println(string1 + " середина");
                 }
+
                 Depo depo1 = null;
                 try {
                     depo1 = mapper.readValue(string1, Depo.class);
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
                 }
-                System.out.println(depo1);
                 depoMap.put(depo1.getId(), depo1);
-                System.out.println();
                 string1 = null;
             }
 
@@ -85,16 +77,4 @@ public class ConvertJson {
             e.printStackTrace();
         }
     }
-
-    public static void main(String[] args) {
-        ConvertJson convertJson = new ConvertJson();
-        File file = new File("F:\\ConvertExel\\exampleTZ.json");
-        convertJson.convertJs(file);
-        convertJson.getDepoMap().values().stream().forEach(System.out::println);
-        LocalDateTime localDateTime = LocalDateTime.now();
-        System.out.println(localDateTime);
-//        var r = convertJson.convertT(localDateTime);
-//        System.out.println(r);
-    }
-
 }
