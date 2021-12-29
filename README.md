@@ -9,7 +9,7 @@ simple converter json to exel file
 - Имя файла соответствовeт времени создания файла:
  yyyy-MM-dd__HH-mm.xlsx - паттерн названия файла.
 
-![Image of Arch]()
+![Image of Arch](https://github.com/SlartiBartFast-art/json_to_exel/blob/main/image/Screenshot_4.jpg)
 
  Присутствует возможность выбора директории:
   - где расположен файл
@@ -17,4 +17,4 @@ simple converter json to exel file
 
 Итоговый вид файла после конвертации:
 
-![Image of Arch]()
+![Image of Arch](https://github.com/SlartiBartFast-art/json_to_exel/blob/main/image/Screenshot_3.jpg)
