@@ -23,7 +23,6 @@ public class Temp9 {
         Map<Integer, String> stringMap = new HashMap<>();
         stringMap.put(1, "id");
         stringMap.put(2, "date_time");
-//        stringMap.put(3, "time");
         stringMap.put(3, "type");
         stringMap.put(4, "sender_id");
         stringMap.put(5, "sender name");
@@ -92,14 +91,7 @@ public class Temp9 {
         /* ---------*/
         XSSFWorkbook workbook = new XSSFWorkbook(); // создание книги
         XSSFSheet sheet = workbook.createSheet("Datatypes in Java"); // создание страницы
-//        Object[][] datatypes = {
-//                {"Datatype", "Type", "Size(in bytes)"},
-//                {"int", "Primitive", 2},
-//                {"float", "Primitive", 4},
-//                {"double", "Primitive", 8},
-//                {"char", "Primitive", 1},
-//                {"String", "Non-Primitive", "No fixed size"}
-//        };
+
         System.out.println(depoMap.size());
         System.out.println(stringMap.size());
         int rowNum = 0; //строка
@@ -108,40 +100,36 @@ public class Temp9 {
         Row row1 = sheet.createRow(rowNum++); // строка
         for (int i = 1; i < stringMap.size() + 1; i++) {
 
-            Cell cell = row1.createCell(i-1); // ячейка
+            Cell cell = row1.createCell(i - 1); // ячейка
             cell.setCellValue((String) stringMap.get(i));
 
         }
         for (var datatype : depoMap.values()) {
-//            for (int i = 0; i < depoMap.size()+1; i++) {
-                Row row = sheet.createRow(rowNum++); // строка
-                int colNum = 0;
 
-                Cell cell = row.createCell(colNum++); // ячейка
-                cell.setCellValue((Integer) datatype.getId());
-                Cell cell1 = row.createCell(colNum++); // ячейка
-                cell1.setCellValue((String) datatype.getDate() + " " + datatype.getTime());
-//                Cell cell2 = row.createCell(colNum++); // ячейка
-//                cell2.setCellValue((String) datatype.getTime());
+            Row row = sheet.createRow(rowNum++); // строка
+            int colNum = 0;
+
+            Cell cell = row.createCell(colNum++); // ячейка
+            cell.setCellValue((Integer) datatype.getId());
+            Cell cell1 = row.createCell(colNum++); // ячейка
+            cell1.setCellValue((String) datatype.getDate() + " " + datatype.getTime());
             Cell cellT = row.createCell(colNum++); // ячейка
-            cellT.setCellValue((String) datatype.getTime());
-                Cell cell3 = row.createCell(colNum++); // ячейка
-                cell3.setCellValue((Integer) datatype.getSender().getId());
-                Cell cell4 = row.createCell(colNum++); // ячейка
-                cell4.setCellValue((String) datatype.getSender().getName());
-                Cell cell5 = row.createCell(colNum++); // ячейка
-                cell5.setCellValue((Integer) datatype.getRecipient().getId());
-                Cell cell6 = row.createCell(colNum++); // ячейка
-                cell6.setCellValue((String) datatype.getRecipient().getName());
-                Cell cell7 = row.createCell(colNum++); // ячейка
-                cell7.setCellValue((Double) datatype.getAmount());
-                Cell cell8 = row.createCell(colNum++); // ячейка
-                cell8.setCellValue((Double) datatype.getFee());
-                Cell cell9 = row.createCell(colNum++); // ячейка
-                cell9.setCellValue((String) datatype.getCurrency().getLabel());
-//            Cell cell10 = row.createCell(colNum++); // ячейка
-//            cell10.setCellValue((String) datatype.getCurrency().getLabel());
-//            }
+            cellT.setCellValue((String) datatype.getType());
+            Cell cell3 = row.createCell(colNum++); // ячейка
+            cell3.setCellValue((Integer) datatype.getSender().getId());
+            Cell cell4 = row.createCell(colNum++); // ячейка
+            cell4.setCellValue((String) datatype.getSender().getName());
+            Cell cell5 = row.createCell(colNum++); // ячейка
+            cell5.setCellValue((Integer) datatype.getRecipient().getId());
+            Cell cell6 = row.createCell(colNum++); // ячейка
+            cell6.setCellValue((String) datatype.getRecipient().getName());
+            Cell cell7 = row.createCell(colNum++); // ячейка
+            cell7.setCellValue((Double) datatype.getAmount());
+            Cell cell8 = row.createCell(colNum++); // ячейка
+            cell8.setCellValue((Double) datatype.getFee());
+            Cell cell9 = row.createCell(colNum++); // ячейка
+            cell9.setCellValue((String) datatype.getCurrency().getLabel());
+
 
         }
 
