@@ -1,13 +1,12 @@
 package org.converter.servise;
 
 import org.codehaus.jackson.map.ObjectMapper;
-import org.converter.model.Depo;
+import org.converter.model.Deposit;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -18,13 +17,13 @@ import java.util.*;
  */
 public class ConvertJson {
 
-    private Map<Integer, Depo> depoMap = new HashMap();
+    private Map<Integer, Deposit> depoMap = new HashMap();
 
-    public Map<Integer, Depo> getDepoMap() {
+    public Map<Integer, Deposit> getDepoMap() {
         return depoMap;
     }
 
-    public void setDepoMap(Map<Integer, Depo> depoMap) {
+    public void setDepoMap(Map<Integer, Deposit> depoMap) {
         this.depoMap = depoMap;
     }
 
@@ -63,13 +62,13 @@ public class ConvertJson {
                     string1 = "{" + arrG[i] + "}";
                 }
 
-                Depo depo1 = null;
+                Deposit deposit1 = null;
                 try {
-                    depo1 = mapper.readValue(string1, Depo.class);
+                    deposit1 = mapper.readValue(string1, Deposit.class);
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
                 }
-                depoMap.put(depo1.getId(), depo1);
+                depoMap.put(deposit1.getId(), deposit1);
                 string1 = null;
             }
 

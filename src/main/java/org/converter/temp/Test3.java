@@ -1,11 +1,9 @@
 package org.converter.temp;
 
 import org.converter.model.Currency;
-import org.converter.model.Depo;
+import org.converter.model.Deposit;
 import org.converter.model.Recipient;
 import org.converter.model.Sender;
-
-import java.sql.Timestamp;
 
 public class Test3 {
     public static void main(String[] args) {
@@ -18,11 +16,11 @@ public class Test3 {
         Currency currency = new Currency();
         currency.setId(1);
         currency.setLabel("USD");
-        Depo depo = Depo.of("2016-12-22", 88.25, 1, "11:09:34", "DEPOSIT", 14.47);
-        depo.setSender(sender);
-        depo.setRecipient(recipient);
-        depo.setCurrency(currency);
-        System.out.println(depo);
+        Deposit deposit = Deposit.of("2016-12-22", 88.25, 1, "11:09:34", "DEPOSIT", 14.47);
+        deposit.setSender(sender);
+        deposit.setRecipient(recipient);
+        deposit.setCurrency(currency);
+        System.out.println(deposit);
     }
 
 

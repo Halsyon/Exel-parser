@@ -1,13 +1,8 @@
 package org.converter.model;
 
-import io.github.millij.poi.ss.model.annotations.Sheet;
-import io.github.millij.poi.ss.model.annotations.*;
-
-import java.sql.Timestamp;
-import java.util.Calendar;
 import java.util.Objects;
 
-public class Depo {
+public class Deposit {
 
     private String date;
 
@@ -27,18 +22,18 @@ public class Depo {
 
     private Currency currency;
 
-    public Depo() {
+    public Deposit() {
     }
 
-    public static Depo of(String date, double amount, int id, String time, String type, double fee) {
-        Depo depo = new Depo();
-        depo.date = date;
-        depo.amount = amount;
-        depo.id = id;
-        depo.time = time;
-        depo.type = type;
-        depo.fee = fee;
-        return depo;
+    public static Deposit of(String date, double amount, int id, String time, String type, double fee) {
+        Deposit deposit = new Deposit();
+        deposit.date = date;
+        deposit.amount = amount;
+        deposit.id = id;
+        deposit.time = time;
+        deposit.type = type;
+        deposit.fee = fee;
+        return deposit;
     }
 
     public int getId() {
@@ -121,8 +116,8 @@ public class Depo {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Depo depo = (Depo) o;
-        return id == depo.id;
+        Deposit deposit = (Deposit) o;
+        return id == deposit.id;
     }
 
     @Override
