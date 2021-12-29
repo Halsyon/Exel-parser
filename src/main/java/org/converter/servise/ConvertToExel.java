@@ -46,6 +46,9 @@ public class ConvertToExel {
         XSSFWorkbook workbook = new XSSFWorkbook(); // создание книги
         XSSFSheet sheet = workbook.createSheet("Datatypes in Java"); // создание страницы
 
+        int width = 15; // Where width is number of caracters
+        sheet.setDefaultColumnWidth(width);
+
 // Create header CellStyle
         Font headerFont = workbook.createFont();
         headerFont.setColor(IndexedColors.BLACK.index);
