@@ -1,9 +1,6 @@
 package org.converter.servise;
 
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.IndexedColors;
-import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.*;
 import org.converter.model.Depo;
 
@@ -47,35 +44,25 @@ public class ConvertToExel {
         XSSFWorkbook workbook = new XSSFWorkbook(); // создание книги
         XSSFSheet sheet = workbook.createSheet("Datatypes in Java"); // создание страницы
 
+// Create header CellStyle
+        Font headerFont = workbook.createFont();
+        headerFont.setColor(IndexedColors.BLACK.index);
+        CellStyle headerCellStyle = sheet.getWorkbook().createCellStyle();
+        // fill foreground color ...
+        headerCellStyle.setFillForegroundColor(IndexedColors.YELLOW1.index);
+        // and solid fill pattern produces solid grey cell fill
+        headerCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        headerCellStyle.setFont(headerFont);
 
         int rowNum = 0; //строка
         int colNum1 = 0;
         System.out.println("Creating excel");
         Row row1 = sheet.createRow(rowNum++); // строка
-        CellStyle style=null;
 
-        XSSFFont defaultFont= workbook.createFont();
-        defaultFont.setFontHeightInPoints((short)10);
-        defaultFont.setFontName("Arial");
-        defaultFont.setColor(IndexedColors.BLACK.getIndex());
-        defaultFont.setBold(false);
-        defaultFont.setItalic(false);
-
-        XSSFFont font= workbook.createFont();
-        font.setFontHeightInPoints((short)10);
-        font.setFontName("Arial");
-        font.setColor(IndexedColors.WHITE.getIndex());
-        font.setBold(true);
-        font.setItalic(false);
-
-        style=row1.getRowStyle();
-//        style.setFillBackgroundColor(IndexedColors.DARK_BLUE.getIndex());
-//        style.setFillPattern(CellStyle.class. .SOLID_FOREGROUND);
-//        style.setAlignment(CellStyle.ALIGN_CENTER);
-//        style.setFont(font);
         for (int i = 1; i < stringMap.size() + 1; i++) {
             Cell cell = row1.createCell(i - 1); // ячейка
             cell.setCellValue((String) stringMap.get(i));
+            cell.setCellStyle(headerCellStyle);
         }
         for (var datatype : depoMap.values()) {
             Row row = sheet.createRow(rowNum++); // строка
