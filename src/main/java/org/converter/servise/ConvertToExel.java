@@ -9,9 +9,11 @@ import org.converter.model.Deposit;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Класс конвертирует данный из хранилица данных объектов POJO в EXEL файл по указанному адресу,
@@ -90,7 +92,9 @@ public class ConvertToExel {
             cell.setCellStyle(headerCellStyle);
         }
 
-        for (var datatype : depositMap.values()) {
+        var map2 = onOrderDate(depositMap);
+
+        for (var datatype : map2.values()) {
             Row row = sheet.createRow(rowNum++); // строка
             int colNum = 0;
 
@@ -220,5 +224,46 @@ public class ConvertToExel {
         for (int i = 0; i < stringMap.size(); i++) {
             sheet.autoSizeColumn(i, true);
         }
+    }
+
+    public List<String> port(List<String> datestring) {
+        datestring.sort(new Comparator<String>() {
+            DateFormat f = new SimpleDateFormat("dd-MM-yy  hh:mm:ss");
+
+            @Override
+            public int compare(String o1, String o2) {
+                try {
+                    return f.parse(o1).compareTo(f.parse(o2));
+                } catch (ParseException e) {
+                    throw new IllegalArgumentException(e);
+                }
+            }
+        });
+        return datestring;
+    }
+
+    /**
+     * метод осуществляет упорядочевание списка Объектов передаваемых в Exel по дате время
+     * @param map Объектов для парсинга в Exel file
+     * @return Map<Integer, Deposit> onOrder dateTime
+     */
+    private Map<Integer, Deposit> onOrderDate(Map<Integer, Deposit> map) {
+
+        Map<Integer, Deposit> rsl = new HashMap<>();
+        List<String> stringList = new ArrayList<>();
+        for (Deposit depo : map.values()) {
+            stringList.add(timeRevers(depo.getDate(), depo.getTime()));
+        }
+        stringList = port(stringList);
+        System.out.println(stringList);
+
+        for (int i = 0; i < stringList.size(); i++) {
+            for (Deposit reto : map.values()) {
+                if (stringList.get(i).equals(timeRevers(reto.getDate(), reto.getTime()))) {
+                    rsl.put(i + 1, reto);
+                }
+            }
+        }
+        return rsl;
     }
 }
