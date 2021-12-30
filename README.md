@@ -9,8 +9,12 @@ simple converter json to exel file
 - Имя файла соответствовeт времени создания файла:
  yyyy-MM-dd__HH-mm.xlsx - паттерн названия файла.
   
-- Важно: все ячейки должны иметь правельные форматы, это будет проверяться в MS office 2016.
+ Важно: 
+ -  все ячейки должны иметь правельные форматы, это будет проверяться в MS office 2016.
   (важно для сортировки и фильтрации по колонкам в MS office)
+ - заголовок таблицы должен иметь: Жёлтыйй фоновый цвет, обводку по контуру ячеек,
+   текст заголовка должен быть **Жирным**.
+
 
 ![Image of Arch](https://github.com/SlartiBartFast-art/json_to_exel/blob/main/image/Screenshot_4.jpg)
 
@@ -20,6 +24,18 @@ simple converter json to exel file
 
 Итоговый вид файла после конвертации:
 
-![Image of Arch](https://github.com/SlartiBartFast-art/json_to_exel/blob/main/image/Screenshot_3.jpg)
+![Image of Arch](https://github.com/SlartiBartFast-art/json_to_exel/blob/develop/image/Screenshot_5.jpg)
 
 Запуск осуществляется через главный класс package org.converter.Main;
+
+Used stack technologies:
+
+- Java (Back-end)
+
+- Libraries (java):
+
+- Apache POI
+
+- Jackson (parse JSON)
+
+- Maven
