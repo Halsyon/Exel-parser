@@ -24,6 +24,10 @@ public class ConvertToExel {
 
     private String filePath = null;
 
+    private int colNum;
+
+    private Map<Integer, String> stringHashMap = new HashMap<>();
+
     private Map<Integer, String> stringMap = new HashMap<>();
 
     private Map<Integer, Deposit> depositMap = new HashMap();
@@ -32,19 +36,7 @@ public class ConvertToExel {
         this.depositMap = depositMap;
         this.filePath = filePath;
         initMap();
-    }
-
-    private void initMap() {
-        this.stringMap.put(1, "ID");
-        this.stringMap.put(2, "Date");
-        this.stringMap.put(3, "Type");
-        this.stringMap.put(4, "Sender ID");
-        this.stringMap.put(5, "Sender Name");
-        this.stringMap.put(6, "Recipient ID");
-        this.stringMap.put(7, "Recipient Name");
-        this.stringMap.put(8, "Amount");
-        this.stringMap.put(9, "Fee");
-        this.stringMap.put(10, "Currency");
+        initArrayType();
     }
 
     /**
@@ -96,77 +88,26 @@ public class ConvertToExel {
 
         for (var datatype : map2.values()) {
             Row row = sheet.createRow(rowNum++); // строка
-            int colNum = 0;
-
-            Cell cell = row.createCell(colNum++); // ячейка
-            CellStyle style0 = workbook.createCellStyle();
-            CreationHelper createHelper0 = workbook.getCreationHelper();
-            style0.setDataFormat(createHelper0.createDataFormat().getFormat("0"));
-            cell.setCellStyle(style0);
+            colNum = 0;
+            Cell cell = createCell(row, colNum, workbook, stringHashMap);
             cell.setCellValue(datatype.getId());
-
-            Cell cell1 = row.createCell(colNum++); // ячейка
-            style = workbook.createCellStyle();
-            CreationHelper createHelper = workbook.getCreationHelper();
-            style.setDataFormat(createHelper.createDataFormat().getFormat("dd.MM.yy HH:mm:ss"));
+            Cell cell1 = createCell(row, colNum, workbook, stringHashMap);
             cell1.setCellValue(timeRevers(datatype.getDate(), datatype.getTime()));
-            cell1.setCellStyle(style);
-
-
-            Cell cellT = row.createCell(colNum++); // ячейка
-            CellStyle style1 = workbook.createCellStyle();
-            CreationHelper createHelper1 = workbook.getCreationHelper();
-            style1.setDataFormat(createHelper1.createDataFormat().getFormat("General"));
-            cellT.setCellStyle(style1);
-            cellT.setCellValue(datatype.getType());
-
-            Cell cell3 = row.createCell(colNum++); // ячейка
-            CellStyle style3 = workbook.createCellStyle();
-            CreationHelper createHelper3 = workbook.getCreationHelper();
-            style3.setDataFormat(createHelper3.createDataFormat().getFormat("0"));
-            cell3.setCellStyle(style3);
+            Cell cell2 = createCell(row, colNum, workbook, stringHashMap);
+            cell2.setCellValue(datatype.getType());
+            Cell cell3 = createCell(row, colNum, workbook, stringHashMap);
             cell3.setCellValue(datatype.getSender().getId());
-
-            Cell cell4 = row.createCell(colNum++); // ячейка
-            CellStyle style4 = workbook.createCellStyle();
-            CreationHelper createHelper4 = workbook.getCreationHelper();
-            style4.setDataFormat(createHelper4.createDataFormat().getFormat("General"));
-            cell4.setCellStyle(style4);
+            Cell cell4 = createCell(row, colNum, workbook, stringHashMap);
             cell4.setCellValue(datatype.getSender().getName());
-
-            Cell cell5 = row.createCell(colNum++); // ячейка
-            CellStyle style5 = workbook.createCellStyle();
-            CreationHelper createHelper5 = workbook.getCreationHelper();
-            style5.setDataFormat(createHelper5.createDataFormat().getFormat("0"));
-            cell5.setCellStyle(style5);
+            Cell cell5 = createCell(row, colNum, workbook, stringHashMap);
             cell5.setCellValue(datatype.getRecipient().getId());
-
-            Cell cell6 = row.createCell(colNum++); // ячейка
-            CellStyle style6 = workbook.createCellStyle();
-            CreationHelper createHelper6 = workbook.getCreationHelper();
-            style6.setDataFormat(createHelper6.createDataFormat().getFormat("General"));
-            cell6.setCellStyle(style6);
+            Cell cell6 = createCell(row, colNum, workbook, stringHashMap);
             cell6.setCellValue(datatype.getRecipient().getName());
-
-            Cell cell7 = row.createCell(colNum++); // ячейка
-            CellStyle style7 = workbook.createCellStyle();
-            CreationHelper createHelper7 = workbook.getCreationHelper();
-            style7.setDataFormat(createHelper7.createDataFormat().getFormat("0.00"));
-            cell7.setCellStyle(style7);
+            Cell cell7 = createCell(row, colNum, workbook, stringHashMap);
             cell7.setCellValue(datatype.getAmount());
-
-            Cell cell8 = row.createCell(colNum++); // ячейка
-            CellStyle style8 = workbook.createCellStyle();
-            CreationHelper createHelper8 = workbook.getCreationHelper();
-            style8.setDataFormat(createHelper8.createDataFormat().getFormat("0.00"));
-            cell8.setCellStyle(style8);
+            Cell cell8 = createCell(row, colNum, workbook, stringHashMap);
             cell8.setCellValue(datatype.getFee());
-
-            Cell cell9 = row.createCell(colNum++); // ячейка
-            CellStyle style9 = workbook.createCellStyle();
-            CreationHelper createHelper9 = workbook.getCreationHelper();
-            style9.setDataFormat(createHelper9.createDataFormat().getFormat("General"));
-            cell9.setCellStyle(style9);
+            Cell cell9 = createCell(row, colNum, workbook, stringHashMap);
             cell9.setCellValue(datatype.getCurrency().getLabel());
         }
 
@@ -182,6 +123,49 @@ public class ConvertToExel {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Метод производит создание ячейки(Cell cell) и задает тип согласно задания
+     * @param row строка
+     * @param colN номер ячеки
+     * @param workbook Книга
+     * @param stringMap Map values type cell
+     * @return
+     */
+    private Cell createCell(Row row, int colN, Workbook workbook, Map<Integer, String> stringMap) {
+        Cell cell = row.createCell(colNum++);
+        CellStyle style0 = workbook.createCellStyle();
+        CreationHelper createHelper0 = workbook.getCreationHelper();
+        style0.setDataFormat(createHelper0.createDataFormat().getFormat(stringMap.get(colNum)));
+        cell.setCellStyle(style0);
+        return cell;
+    }
+
+    private void initMap() {
+        this.stringMap.put(1, "ID");
+        this.stringMap.put(2, "Date");
+        this.stringMap.put(3, "Type");
+        this.stringMap.put(4, "Sender ID");
+        this.stringMap.put(5, "Sender Name");
+        this.stringMap.put(6, "Recipient ID");
+        this.stringMap.put(7, "Recipient Name");
+        this.stringMap.put(8, "Amount");
+        this.stringMap.put(9, "Fee");
+        this.stringMap.put(10, "Currency");
+    }
+
+    private void initArrayType() {
+        this.stringHashMap.put(1, "0");
+        this.stringHashMap.put(2, "dd.MM.yy HH:mm:ss");
+        this.stringHashMap.put(3, "General");
+        this.stringHashMap.put(4, "0");
+        this.stringHashMap.put(5, "General");
+        this.stringHashMap.put(6, "0");
+        this.stringHashMap.put(7, "General");
+        this.stringHashMap.put(8, "0.00");
+        this.stringHashMap.put(9, "0.00");
+        this.stringHashMap.put(10, "General");
     }
 
     /**
@@ -244,6 +228,7 @@ public class ConvertToExel {
 
     /**
      * метод осуществляет упорядочевание списка Объектов передаваемых в Exel по дате время
+     *
      * @param map Объектов для парсинга в Exel file
      * @return Map<Integer, Deposit> onOrder dateTime
      */

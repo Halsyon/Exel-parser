@@ -9,9 +9,4 @@ public class Currency {
 
     private String label;
 
-//    @Override
-//    public String toString() {
-//        return String.format("Currency: id=%s, label=%s",
-//                id, label);
-//    }
 }

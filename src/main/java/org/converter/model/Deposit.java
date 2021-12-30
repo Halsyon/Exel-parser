@@ -55,9 +55,4 @@ public class Deposit {
         return Objects.hash(id);
     }
 
-//    @Override
-//    public String toString() {
-//        return String.format("Deposit: id=%s, amount=%s, data=%s, time=%s, type=%s, fee=%s, Sender=%s, Recipient=%s, Currency=%s",
-//                id, amount, date, time, type, fee, sender, recipient, currency);
-//    }
 }

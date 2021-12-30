@@ -2,8 +2,6 @@ package org.converter.model;
 
 import lombok.*;
 
-import java.util.Objects;
-
 @Data
 public class Recipient {
 
@@ -11,9 +9,4 @@ public class Recipient {
 
     private int id;
 
-//    @Override
-//    public String toString() {
-//        return String.format("Recipient: id=%s, name=%s",
-//                id, name);
-//    }
 }
