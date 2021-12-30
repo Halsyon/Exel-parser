@@ -2,6 +2,7 @@ package org.converter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 /**
+ * пример работы логгера
  * Hello world!
  */
 public class App {
