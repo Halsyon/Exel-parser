@@ -24,7 +24,7 @@ simple converter json to exel file
 
 Итоговый вид файла после конвертации, отсортирован по дате и времени:
 
-![Image of Arch](https://github.com/SlartiBartFast-art/json_to_exel/blob/develop/image/Screenshot_5.jpg)
+![Image of Arch](https://github.com/SlartiBartFast-art/json_to_exel/blob/main/image/Screenshot_3.jpg)
 
 Запуск осуществляется через главный класс package org.converter.Main;
 
