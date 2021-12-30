@@ -16,7 +16,7 @@ simple converter json to exel file
    текст заголовка должен быть **Жирным**.
 
 
-![Image of Arch](https://github.com/SlartiBartFast-art/json_to_exel/blob/main/image/Screenshot_4.jpg)
+![Image of Arch](https://github.com/SlartiBartFast-art/json_to_exel/blob/develop/image/Screenshot_4.jpg)
 
  Присутствует возможность выбора директории:
   - где расположен файл Json
