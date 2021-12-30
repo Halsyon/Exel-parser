@@ -37,5 +37,7 @@ Used stack technologies:
 - Apache POI
 
 - Jackson (parse JSON)
-
+  
+- Lombok
+  
 - Maven
