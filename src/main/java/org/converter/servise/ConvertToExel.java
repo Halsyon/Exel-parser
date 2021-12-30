@@ -1,5 +1,7 @@
 package org.converter.servise;
 
+import lombok.*;
+
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.*;
 import org.converter.model.Deposit;
@@ -15,16 +17,17 @@ import java.util.Map;
  * Класс конвертирует данный из хранилица данных объектов POJO в EXEL файл по указанному адресу,
  * имя файла EXEL дата и время его создания
  */
+@Data
 public class ConvertToExel {
 
     private String filePath = null;
 
     private Map<Integer, String> stringMap = new HashMap<>();
 
-    private Map<Integer, Deposit> depoMap = new HashMap();
+    private Map<Integer, Deposit> depositMap = new HashMap();
 
     public ConvertToExel(Map<Integer, Deposit> depositMap, String filePath) {
-        this.depoMap = depositMap;
+        this.depositMap = depositMap;
         this.filePath = filePath;
         initMap();
     }
@@ -47,12 +50,12 @@ public class ConvertToExel {
      */
     public void convertToEl() {
         XSSFWorkbook workbook = new XSSFWorkbook(); // создание книги
-        XSSFSheet sheet = workbook.createSheet("Datatypes in Java"); // создание страницы
+        XSSFSheet sheet = workbook.createSheet("Datatype in Java"); // создание страницы
 
         CellStyle style;
         DataFormat format = workbook.createDataFormat();
 
-        int width = 15; // Where width is number of caracters
+        int width = 15;
         sheet.setDefaultColumnWidth(width);
 
 // Create header CellStyle
@@ -78,7 +81,6 @@ public class ConvertToExel {
         headerCellStyle.setTopBorderColor(IndexedColors.BLACK.getIndex());
 
         int rowNum = 0; //строка
-        int colNum1 = 0;
 
         Row row1 = sheet.createRow(rowNum++); // строка
 
@@ -88,10 +90,9 @@ public class ConvertToExel {
             cell.setCellStyle(headerCellStyle);
         }
 
-        for (var datatype : depoMap.values()) {
+        for (var datatype : depositMap.values()) {
             Row row = sheet.createRow(rowNum++); // строка
             int colNum = 0;
-            sheet.autoSizeColumn((short) 1);
 
             Cell cell = row.createCell(colNum++); // ячейка
             CellStyle style0 = workbook.createCellStyle();
@@ -118,28 +119,28 @@ public class ConvertToExel {
             Cell cell3 = row.createCell(colNum++); // ячейка
             CellStyle style3 = workbook.createCellStyle();
             CreationHelper createHelper3 = workbook.getCreationHelper();
-            style3.setDataFormat(createHelper0.createDataFormat().getFormat("0"));
+            style3.setDataFormat(createHelper3.createDataFormat().getFormat("0"));
             cell3.setCellStyle(style3);
             cell3.setCellValue(datatype.getSender().getId());
 
             Cell cell4 = row.createCell(colNum++); // ячейка
             CellStyle style4 = workbook.createCellStyle();
             CreationHelper createHelper4 = workbook.getCreationHelper();
-            style4.setDataFormat(createHelper0.createDataFormat().getFormat("General"));
+            style4.setDataFormat(createHelper4.createDataFormat().getFormat("General"));
             cell4.setCellStyle(style4);
             cell4.setCellValue(datatype.getSender().getName());
 
             Cell cell5 = row.createCell(colNum++); // ячейка
             CellStyle style5 = workbook.createCellStyle();
             CreationHelper createHelper5 = workbook.getCreationHelper();
-            style5.setDataFormat(createHelper1.createDataFormat().getFormat("0"));
+            style5.setDataFormat(createHelper5.createDataFormat().getFormat("0"));
             cell5.setCellStyle(style5);
             cell5.setCellValue(datatype.getRecipient().getId());
 
             Cell cell6 = row.createCell(colNum++); // ячейка
             CellStyle style6 = workbook.createCellStyle();
             CreationHelper createHelper6 = workbook.getCreationHelper();
-            style6.setDataFormat(createHelper1.createDataFormat().getFormat("General"));
+            style6.setDataFormat(createHelper6.createDataFormat().getFormat("General"));
             cell6.setCellStyle(style6);
             cell6.setCellValue(datatype.getRecipient().getName());
 
@@ -165,6 +166,8 @@ public class ConvertToExel {
             cell9.setCellValue(datatype.getCurrency().getLabel());
         }
 
+        sizeSheet(sheet);
+
         String path = filePath + convertT() + ".xlsx";
 
         try (FileOutputStream outputStream = new FileOutputStream(path)) {
@@ -177,20 +180,45 @@ public class ConvertToExel {
         }
     }
 
+    /**
+     * метод конвертирует время
+     * к формату yyyy-MM-dd__HH-mm - паттерн имени файла.
+     *
+     * @return
+     */
     private String convertT() {
         LocalDateTime localDateTime = LocalDateTime.now();
         String rsl = null;
         var t = localDateTime.toString().split("T");
         var y = t[1].split(":");
-        rsl = t[0] + "_" + y[0] + "-" + y[1];
+        rsl = t[0] + "__" + y[0] + "-" + y[1];
         return rsl;
     }
 
+    /**
+     * метод проводит изминение поряд отображения даты
+     *
+     * @param one дата/date
+     * @param two время/time
+     * @return datetime string
+     */
     private String timeRevers(String one, String two) {
         String rsl = null;
         var t = one.split("-");
         var y = t[0].substring(2);
-        rsl = t[2] + "-" + t[1] + "-" + y + " " + two;
+        rsl = t[2] + "-" + t[1] + "-" + y + "  " + two;
         return rsl;
+    }
+
+    /**
+     * меттод задает размер форматирования для всех столбцов документа Exel
+     * poi.apache.org - usermodel /  Sheet.html#autoSizeColumn-int-boolean-
+     *
+     * @param sheet
+     */
+    private void sizeSheet(XSSFSheet sheet) {
+        for (int i = 0; i < stringMap.size(); i++) {
+            sheet.autoSizeColumn(i, true);
+        }
     }
 }

@@ -5,6 +5,9 @@ import org.converter.model.Deposit;
 import org.converter.model.Recipient;
 import org.converter.model.Sender;
 
+/**
+ * класс показывает содержимое объекта Deposit
+ */
 public class Test3 {
     public static void main(String[] args) {
         Sender sender = new Sender();
@@ -22,6 +25,4 @@ public class Test3 {
         deposit.setCurrency(currency);
         System.out.println(deposit);
     }
-
-
 }

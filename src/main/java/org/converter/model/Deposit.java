@@ -1,7 +1,10 @@
 package org.converter.model;
 
+import lombok.*;
+
 import java.util.Objects;
 
+@Data
 public class Deposit {
 
     private String date;
@@ -22,10 +25,9 @@ public class Deposit {
 
     private Currency currency;
 
-    public Deposit() {
-    }
-
-    public static Deposit of(String date, double amount, int id, String time, String type, double fee) {
+       public static Deposit of(String date, double amount,
+                                int id, String time,
+                                String type, double fee) {
         Deposit deposit = new Deposit();
         deposit.date = date;
         deposit.amount = amount;
@@ -34,78 +36,6 @@ public class Deposit {
         deposit.type = type;
         deposit.fee = fee;
         return deposit;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public Sender getSender() {
-        return sender;
-    }
-
-    public void setSender(Sender sender) {
-        this.sender = sender;
-    }
-
-    public Recipient getRecipient() {
-        return recipient;
-    }
-
-    public void setRecipient(Recipient recipient) {
-        this.recipient = recipient;
-    }
-
-    public Currency getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(Currency currency) {
-        this.currency = currency;
-    }
-
-    public double getFee() {
-        return fee;
-    }
-
-    public void setFee(double fee) {
-        this.fee = fee;
     }
 
     @Override
@@ -125,9 +55,9 @@ public class Deposit {
         return Objects.hash(id);
     }
 
-    @Override
-    public String toString() {
-        return String.format("Depo: id=%s, amount=%s, data=%s, time=%s, type=%s, fee=%s, Sender=%s, Recipient=%s, Currency=%s",
-                id, amount, date, time, type, fee, sender, recipient, currency);
-    }
+//    @Override
+//    public String toString() {
+//        return String.format("Deposit: id=%s, amount=%s, data=%s, time=%s, type=%s, fee=%s, Sender=%s, Recipient=%s, Currency=%s",
+//                id, amount, date, time, type, fee, sender, recipient, currency);
+//    }
 }

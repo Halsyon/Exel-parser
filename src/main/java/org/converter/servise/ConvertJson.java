@@ -1,5 +1,7 @@
 package org.converter.servise;
 
+import lombok.Data;
+
 import org.codehaus.jackson.map.ObjectMapper;
 import org.converter.model.Deposit;
 import org.json.simple.JSONArray;
@@ -9,23 +11,16 @@ import org.json.simple.parser.ParseException;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Класс конвертирует JSON файл в локальное хранилище объектов POJO
  */
+@Data
 public class ConvertJson {
 
-    private Map<Integer, Deposit> depoMap = new HashMap();
-
-    public Map<Integer, Deposit> getDepoMap() {
-        return depoMap;
-    }
-
-    public void setDepoMap(Map<Integer, Deposit> depoMap) {
-        this.depoMap = depoMap;
-    }
+    private Map<Integer, Deposit> depositMap = new HashMap();
 
     public void convertJs(File filePath) {
         File file = filePath;
@@ -68,7 +63,7 @@ public class ConvertJson {
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
                 }
-                depoMap.put(deposit1.getId(), deposit1);
+                depositMap.put(deposit1.getId(), deposit1);
                 string1 = null;
             }
 

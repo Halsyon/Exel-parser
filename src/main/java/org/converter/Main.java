@@ -19,7 +19,7 @@ public class Main {
         File file = new File("F:\\ConvertExel\\exampleTZ.json");
         ConvertJson convertJson = new ConvertJson();
         convertJson.convertJs(file);
-        ConvertToExel convertToExel = new ConvertToExel(convertJson.getDepoMap(), string);
+        ConvertToExel convertToExel = new ConvertToExel(convertJson.getDepositMap(), string);
         convertToExel.convertToEl();
     }
 }

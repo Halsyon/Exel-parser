@@ -10,7 +10,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
- * конверт в файл хмл
+ * Пример работы парсинга из лок.хранилища данных в файл .xlsx
  */
 public class Test1 {
 //    private static final String FILE_NAME = "F:/ConvertExel/convertjson.xlsx";
