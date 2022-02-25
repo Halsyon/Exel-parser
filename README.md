@@ -1,7 +1,7 @@
 # json_to_exel
 
 Simple converter json to exel file
-
+[![Build Status](https://app.travis-ci.com/SlartiBartFast-art/json_to_exel.svg?branch=main)](https://app.travis-ci.com/SlartiBartFast-art/json_to_exel)
 ![GitHub top language](https://img.shields.io/github/languages/top/SlartiBartFast-art/json_to_exel?logo=java&logoColor=red)
 ![GitHub last commit](https://img.shields.io/github/last-commit/SlartiBartFast-art/json_to_exel?logo=github)
 
