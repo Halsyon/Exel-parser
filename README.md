@@ -43,3 +43,5 @@ Used stack technologies:
 - Lombok
   
 - Maven
+_______
+[![Forkers repo roster for @SlartiBartFast-art/json_to_exel](https://reporoster.com/forks/SlartiBartFast-art/json_to_exel)](https://github.com/SlartiBartFast-art/json_to_exel/network/members)
