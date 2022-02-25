@@ -2,6 +2,7 @@
 simple converter json to exel file
 
 ![GitHub top language](https://img.shields.io/github/languages/top/SlartiBartFast-art/json_to_exel?logo=java&logoColor=red)
+![GitHub last commit](https://img.shields.io/github/last-commit/SlartiBartFast-art/json_to_exel?logo=github)
 
 Проект представляет из себя простой конвертер из JSON в Exel file.
 Описание задания для конвертирования содержится в файле task.xml
@@ -45,3 +46,4 @@ Used stack technologies:
 - Maven
 _______
 [![Forkers repo roster for @SlartiBartFast-art/json_to_exel](https://reporoster.com/forks/SlartiBartFast-art/json_to_exel)](https://github.com/SlartiBartFast-art/json_to_exel/network/members)
+[![Stargazers repo roster for @SlartiBartFast-art/json_to_exel](https://reporoster.com/stars/SlartiBartFast-art/json_to_exel)](https://github.com/SlartiBartFast-art/json_to_exel/stargazers)
