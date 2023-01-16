@@ -1,10 +1,10 @@
-# App json to exel
+# App exel parser
 
-[![Build Status](https://app.travis-ci.com/SlartiBartFast-art/json_to_exel.svg?branch=main)](https://app.travis-ci.com/SlartiBartFast-art/json_to_exel)
-![GitHub top language](https://img.shields.io/github/languages/top/SlartiBartFast-art/json_to_exel?logo=java&logoColor=red)
-![GitHub last commit](https://img.shields.io/github/last-commit/SlartiBartFast-art/json_to_exel?logo=github)
+[![Build Status](https://app.travis-ci.com/Halsyon/Exel-parser.svg?branch=main)](https://app.travis-ci.com/Halsyon/Exel-parser)
+![GitHub top language](https://img.shields.io/github/languages/top/Halsyon/Exel-parser?logo=java&logoColor=red)
+![GitHub last commit](https://img.shields.io/github/last-commit/Halsyon/Exel-parser?logo=github)
 
-app to convert json to excel file
+App excel parser
 
 Used stack technologies:
 
@@ -36,7 +36,7 @@ Used stack technologies:
       текст заголовка должен быть **Жирным**.
 
 
-![Image of Arch](https://github.com/SlartiBartFast-art/json_to_exel/blob/main/image/Screenshot_4.jpg)
+![Image of Arch](https://github.com/Halsyon/Exel-parser/blob/main/image/Screenshot_4.jpg)
 
  Присутствует возможность выбора директории:
   - где расположен файл Json
@@ -44,12 +44,12 @@ Used stack technologies:
 
 Итоговый вид файла после конвертации, отсортирован по дате и времени:
 
-![Image of Arch](https://github.com/SlartiBartFast-art/json_to_exel/blob/main/image/Screenshot_3.jpg)
+![Image of Arch](https://github.com/Halsyon/Exel-parser/blob/main/image/Screenshot_3.jpg)
 
 Запуск осуществляется через главный класс:
 
 package org.converter.Main;
 
 _______
-[![Forkers repo roster for @SlartiBartFast-art/json_to_exel](https://reporoster.com/forks/SlartiBartFast-art/json_to_exel)](https://github.com/SlartiBartFast-art/json_to_exel/network/members)
-[![Stargazers repo roster for @SlartiBartFast-art/json_to_exel](https://reporoster.com/stars/SlartiBartFast-art/json_to_exel)](https://github.com/SlartiBartFast-art/json_to_exel/stargazers)
+[![Forkers repo roster for @Halsyon/Exel-parser](https://reporoster.com/forks/Halsyon/Exel-parser)](https://github.com/Halsyon/Exel-parser/network/members)
+[![Stargazers repo roster for @Halsyon/Exel-parser](https://reporoster.com/stars/Halsyon/Exel-parser)](https://github.com/Halsyon/Exel-parser/stargazers)
